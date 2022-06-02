@@ -27,10 +27,35 @@ export class AppComponent implements OnInit {
     this.signupForm.statusChanges.subscribe(
       (status) => console.log(status)
     );
+    this.signupForm.setValue({
+      userData: {
+        'username': 'Uq',
+        'email': 'uq@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
+    this.signupForm.patchValue({
+      userData: {
+        'username': 'UquŃĆ',
+      }
+    });
   }
 
   onSubmit() {
     console.log(this.signupForm);
+    //to resetuje wszystkie kontrolki
+    //this.signupForm.reset()
+
+    //to jak chcemy mieć po resecie ustawiony radiobutton, to przekazujemy obiekt formy z wartościami jakie chcemy po resecie
+    this.signupForm.reset({
+      userData: {
+        'username': null,
+        'email': null
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
   }
 
   onAddHobby() {
